@@ -1,0 +1,10 @@
+FROM adoptopenjdk/maven-openjdk11
+RUN mkdir /cbhapp
+COPY ./ /cbhapp/
+COPY ./testContainer/ranlinux64 /cbhapp/ranlinux64
+WORKDIR /cbhapp/
+RUN mvn clean install -DskipTests
+#RUN ./ranlinux64 -r=./target/cucumber-html-reports -l=true -i overview-features.html:index.html
+#RUN ./ranlinux64 -r=./target/cucumber-html-reports -l=true -i overview-features.html:index.html
+#ENTRYPOINT ["tail", "-f", "/dev/null"]
+ENTRYPOINT ["/cbhapp/ranlinux64", "-r=./target/cucumber-html-reports", "-l=true", "-i", "overview-features.html:index.html"]

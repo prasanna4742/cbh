@@ -1,0 +1,26 @@
+version: "3"
+services:
+  cbh-api:
+    # build: ./springapp/.
+    image: docker.io/prasannakulkarni/cbh-springapp:1.0.0
+    ports: 
+      - "8080:8080"
+    volumes:
+      - /tmp/cbhappdb/:/data
+  keycloak:
+    #build: ./keycloak-cbhrealm/
+    image: docker.io/prasannakulkarni/cbh-keycloak:1.0.0
+    volumes:
+      - /tmp/cbhapprealm/:/data/
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_PROXY: edge
+      KEYCLOAK_IMPORT: /data/
+    ports:
+      - 8090:8080
+  cbh-test:
+    # image: prasannakulkarni/cbh-testapp:1.0.0
+    image: docker.io/prasannakulkarni/cbh-testapp:1.0.0
+    ports: 
+      - "8099:8080"    

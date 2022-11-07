@@ -1,0 +1,14 @@
+{
+   "username": "cbh-read",
+   "enabled": true,
+   "emailVerified": false,
+   "firstName": "cbh-r",
+   "lastName": "reader",
+   "credentials": [
+       {
+           "type": "password",
+           "value": "cbh-read",
+           "temporary": false
+       }
+   ]
+}
